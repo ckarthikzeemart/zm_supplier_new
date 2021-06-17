@@ -16,19 +16,22 @@ class HomePage extends StatefulWidget {
 class _MyStatefulWidgetState extends State<HomePage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     Text(
       'Orders',
-      style: TextStyle(fontSize: 12, fontFamily: 'SourceSansProSemiBold', color: buttonBlue),
+      style: TextStyle(
+          fontSize: 12, fontFamily: 'SourceSansProSemiBold', color: buttonBlue),
     ),
     Text(
       'Customers',
-      style: TextStyle(fontSize: 12, fontFamily: 'SourceSansProSemiBold', color: greyText),
+      style: TextStyle(
+          fontSize: 12, fontFamily: 'SourceSansProSemiBold', color: greyText),
     ),
     Text(
       'Account',
-      style: TextStyle(fontSize: 12, fontFamily: 'SourceSansProSemiBold', color: greyText),
+      style: TextStyle(
+          fontSize: 12, fontFamily: 'SourceSansProSemiBold', color: greyText),
     ),
   ];
   final _pageOptions = [DashboardPage(), CustomersPage(), SettingsPage()];
@@ -45,6 +48,7 @@ class _MyStatefulWidgetState extends State<HomePage> {
     sharedPref.saveBool(Constants.isFromReviewOrder, false);
     mixPanelEvents();
   }
+
   SharedPref sharedPref = SharedPref();
 
   void _onItemTapped(int index) async {
@@ -56,7 +60,7 @@ class _MyStatefulWidgetState extends State<HomePage> {
       if (index == 0) {
         mixpanel.track(Events.TAP_ORDERS_TAB);
       } else if (index == 1) {
-       // mixpanel.track(Events.TAP_CUSTOMERS_TAB);
+        // mixpanel.track(Events.TAP_CUSTOMERS_TAB);
       } else {
         mixpanel.track(Events.TAP_SETTINGS_TAB);
       }
@@ -73,16 +77,24 @@ class _MyStatefulWidgetState extends State<HomePage> {
         backgroundColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('assets/images/orders_blue.png'), size: 22,),
+            icon: ImageIcon(
+              AssetImage('assets/images/orders_blue.png'),
+              size: 22,
+            ),
             label: 'Orders',
           ),
           BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('assets/images/Customers_grey.png'), size: 22,),//Icon(Icons.supervisor_account_outlined),
+            icon: ImageIcon(
+              AssetImage('assets/images/Customers_grey.png'),
+              size: 22,
+            ), //Icon(Icons.supervisor_account_outlined),
             label: 'Customers',
-
           ),
           BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('assets/images/user_grey.png'), size: 22,),//Icon(Icons.account_circle_outlined),
+            icon: ImageIcon(
+              AssetImage('assets/images/user_grey.png'),
+              size: 22,
+            ), //Icon(Icons.account_circle_outlined),
             label: 'Account',
           ),
         ],

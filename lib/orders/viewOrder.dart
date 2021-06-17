@@ -262,53 +262,60 @@ class ViewOrdersDesign extends State<ViewOrdersPage>
                                           left: 15.0,
                                           right: 10.0),
                                       leading: displayImage(element.outlet),
-                                      title: Text(
-                                        element.outlet.outletName,
-                                        style: TextStyle(
-                                          fontSize: 16.0,
-                                          color: Colors.black,
-                                          fontFamily: "SourceSansProSemiBold",
-                                        ),
-                                      ),
+
+                                      title: Transform.translate(
+                                          offset: Offset(-10, 0),
+                                          child: Text(
+                                            element.outlet.outletName,
+                                            style: TextStyle(
+                                              fontSize: 16.0,
+                                              color: Colors.black,
+                                              fontFamily:
+                                                  "SourceSansProSemiBold",
+                                            ),
+                                          )),
                                       // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
 
-                                      subtitle: Container(
-                                        margin: EdgeInsets.only(top: 2.0),
-                                        child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Row(children: <Widget>[
-                                                Container(
-                                                  margin:
-                                                      EdgeInsets.only(top: 2.0),
-                                                  height: 14.0,
-                                                  width: 14.0,
-                                                  child: ImageIcon(AssetImage(
-                                                      'assets/images/truck.png')),
-                                                ),
-                                                Text(
-                                                    " " +
-                                                        element
-                                                            .getTimeDelivered(),
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 12.0,
-                                                        fontFamily:
-                                                            "SourceSansProRegular")),
-                                                Text(
-                                                  " " + '# ${element.orderId}',
-                                                  style: TextStyle(
-                                                      color: greyText,
-                                                      fontSize: 12.0,
-                                                      fontFamily:
-                                                          "SourceSansProRegular"),
-                                                ),
-                                              ]),
-                                              Constants.OrderStatusColor(
-                                                  element),
-                                            ]),
-                                      ),
+                                      subtitle: Transform.translate(
+                                          offset: Offset(-10, 0),
+                                          child: Container(
+                                            margin: EdgeInsets.only(top: 2.0),
+                                            child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Row(children: <Widget>[
+                                                    Container(
+                                                      margin: EdgeInsets.only(
+                                                          top: 2.0),
+                                                      height: 14.0,
+                                                      width: 14.0,
+                                                      child: ImageIcon(AssetImage(
+                                                          'assets/images/truck.png')),
+                                                    ),
+                                                    Text(
+                                                        " " +
+                                                            element
+                                                                .getTimeDelivered(),
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 12.0,
+                                                            fontFamily:
+                                                                "SourceSansProRegular")),
+                                                    Text(
+                                                      " " +
+                                                          '# ${element.orderId}',
+                                                      style: TextStyle(
+                                                          color: greyText,
+                                                          fontSize: 12.0,
+                                                          fontFamily:
+                                                              "SourceSansProRegular"),
+                                                    ),
+                                                  ]),
+                                                  Constants.OrderStatusColor(
+                                                      element),
+                                                ]),
+                                          )),
                                       trailing: Text(
                                           element.amount.total
                                               .getDisplayValue(),

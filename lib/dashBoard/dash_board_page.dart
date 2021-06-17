@@ -198,7 +198,7 @@ class DashboardState extends State<DashboardPage> {
     specificUserInfo = ApiResponse.fromJson(
         await sharedPref.readData(Constants.specific_user_info));
     if (specificUserInfo.data.goal != null)
-    userGoals = Goal.fromJson(await sharedPref.readData(Constants.USER_GOAL));
+      userGoals = Goal.fromJson(await sharedPref.readData(Constants.USER_GOAL));
     // userProperties = {"userName": specificUserInfo.data.fullName, "email": userResponse.user.email, "userId": userResponse.user.userId};
     print('summary api calling1');
 
@@ -224,7 +224,7 @@ class DashboardState extends State<DashboardPage> {
         tappedGoal = 'Monthly';
       }
       _controller.text =
-      userGoals.amount > 0 ? userGoals.amount.toString() : '';
+          userGoals.amount > 0 ? userGoals.amount.toString() : '';
     }
     Map<String, String> headers = {
       'Content-Type': 'application/json',
@@ -650,8 +650,8 @@ class DashboardState extends State<DashboardPage> {
         width: MediaQuery.of(context).size.width > 375 ? 130 : 105,
         // color: Colors.yellow,
 
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(24))),
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(24))),
 
         child: FlatButton(
           onPressed: () {
@@ -678,8 +678,8 @@ class DashboardState extends State<DashboardPage> {
       padding: const EdgeInsets.only(top: 10, bottom: 13),
       child: FutureBuilder<OrderSummaryResponse>(
           future: orderSummaryData,
-
-          builder: (BuildContext context, AsyncSnapshot<OrderSummaryResponse> snapshot) {
+          builder: (BuildContext context,
+              AsyncSnapshot<OrderSummaryResponse> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: Text(""));
             } else if (snapshot.hasError) {
@@ -734,83 +734,81 @@ class DashboardState extends State<DashboardPage> {
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 13),
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20, 20, 20, 13),
                                     child: Container(
                                       child: Row(children: [
                                         Container(
                                           child: Column(children: [
-
                                             GestureDetector(
                                               onTap: () {
                                                 Navigator.push(
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            ViewOrdersPage(null)));
+                                                            ViewOrdersPage(
+                                                                null)));
                                               },
                                               child: Container(
                                                 color: Colors.white,
                                                 child: Column(
                                                   // mainAxisAlignment: MainAxisAlignment.start,
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
-
-                                                  Align(
-                                                      alignment:
-                                                      Alignment.topLeft,
-                                                      child: new Text(
-                                                        currentIndex == 0
-                                                            ? "Total orders"
-                                                            .toUpperCase()
-                                                            : 'East coast team'
-                                                            .toUpperCase(),
-                                                        style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontSize: 14,
-                                                            fontFamily:
-                                                            "SourceSansProBold"),
-                                                      )),
-                                                  Align(
-                                                      alignment:
-                                                      Alignment.topLeft,
-                                                      child: new Text(
-                                                        (currentIndex == 0)
-                                                            ? spendingsAmount(
-                                                            snapshot.data)
-                                                            : '',
-                                                        style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontSize: 30,
-                                                            fontFamily:
-                                                            "SourceSansProBold"),
-                                                      )),
-
-                                                  Align(
-                                                      alignment:
-                                                      Alignment.topLeft,
-                                                      child: new Text(
-                                                        spendingsPeriod(),
-                                                        style: TextStyle(
-                                                            color: greyText,
-                                                            fontSize: 14,
-                                                            fontFamily:
-                                                            "SourceSansProSemiBold"),
-                                                      )),
-
-                                                ],
+                                                    Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: new Text(
+                                                          currentIndex == 0
+                                                              ? "Total orders"
+                                                                  .toUpperCase()
+                                                              : 'East coast team'
+                                                                  .toUpperCase(),
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 14,
+                                                              fontFamily:
+                                                                  "SourceSansProBold"),
+                                                        )),
+                                                    Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: new Text(
+                                                          (currentIndex == 0)
+                                                              ? spendingsAmount(
+                                                                  snapshot.data)
+                                                              : '',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 30,
+                                                              fontFamily:
+                                                                  "SourceSansProBold"),
+                                                        )),
+                                                    Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: new Text(
+                                                          spendingsPeriod(),
+                                                          style: TextStyle(
+                                                              color: greyText,
+                                                              fontSize: 14,
+                                                              fontFamily:
+                                                                  "SourceSansProSemiBold"),
+                                                        )),
+                                                  ],
                                                 ),
                                               ),
                                             ),
                                           ]),
                                         ),
-
                                         Spacer(),
                                         checkGoalStatus(snapshot.data),
-                                      ]
-                                      ),
+                                      ]),
                                     ),
                                   ),
-
                                   Padding(
                                       padding: const EdgeInsets.only(
                                           left: 20, right: 20),
@@ -818,13 +816,14 @@ class DashboardState extends State<DashboardPage> {
                                         height: 1.5,
                                         color: faintGrey,
                                       )),
-
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 20, right: 20, top:3),
+                                    padding: const EdgeInsets.only(
+                                        left: 20, right: 20, top: 3),
                                     child: InkWell(
                                       onTap: () {
                                         mixpanel.track(
-                                            Events.TAP_DASHBOARD_VIEW_DELIVERIES,
+                                            Events
+                                                .TAP_DASHBOARD_VIEW_DELIVERIES,
                                             properties: userProperties);
                                         mixpanel.flush();
                                         Navigator.push(
@@ -1426,7 +1425,7 @@ class DashboardState extends State<DashboardPage> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 17.0, top: 5, right: 2),
+              padding: const EdgeInsets.only(left: 17.0, top: 0, right: 2),
               child: Container(
                 height: 30,
                 child: LeftRightAlign(
@@ -1560,85 +1559,91 @@ class DashboardState extends State<DashboardPage> {
                             child: ListTile(
                               title: Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
-                                child: Text(
-                                  snapshot.data[index].outlet.outletName,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontFamily: "SourceSansProSemiBold"),
-                                ),
+                                child: Transform.translate(
+                                    offset: Offset(-10, 0),
+                                    child: Text(
+                                      snapshot.data[index].outlet.outletName,
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: "SourceSansProSemiBold"),
+                                    )),
                               ),
                               isThreeLine: true,
-                              subtitle: Container(
-                                margin: EdgeInsets.only(top: 3.0, bottom: 10),
-                                child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Row(children: <Widget>[
-                                        ImageIcon(
-                                          AssetImage(
-                                              "assets/images/Truck-black.png"),
-                                          size: 14,
-                                        ),
-                                        SizedBox(width: 2),
-                                        Text(
-                                          readTimestamp(snapshot
-                                              .data[index].timeDelivered),
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontFamily:
-                                                  "SourceSansProRegular",
-                                              color: Colors.black),
-                                        ),
-                                        SizedBox(width: 5),
-                                        Text(
-                                          snapshot.data[index].orderId,
-                                          style: TextStyle(
-                                              fontSize: 12.0,
-                                              fontFamily:
-                                                  "SourceSansProRegular",
-                                              color: greyText),
-                                        ),
-                                        SizedBox(width: 2),
-                                        if (snapshot
-                                                .data[index].isAcknowledged !=
-                                            null)
-                                          Container(
-                                            width: snapshot
-                                                    .data[index].isAcknowledged
-                                                ? 12
-                                                : 0,
-                                            child: InkResponse(
-                                              child: Image.asset(
-                                                "assets/images/icon-tick-green.png",
-                                                width: 12,
-                                                height: 12,
-                                              ),
+                              subtitle: Transform.translate(
+                                  offset: Offset(-10, 0),
+                                  child: Container(
+                                    margin:
+                                        EdgeInsets.only(top: 3.0, bottom: 10),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Row(children: <Widget>[
+                                            ImageIcon(
+                                              AssetImage(
+                                                  "assets/images/Truck-black.png"),
+                                              size: 14,
                                             ),
-                                          ),
-                                        Spacer(),
-                                        Text(
-                                            '\$' +
-                                                snapshot.data[index].amount
-                                                    .total.amountV1
-                                                    .toStringAsFixed(2)
-                                                    .replaceAllMapped(
-                                                        reg,
-                                                        (Match m) =>
-                                                            '${m[1]},'),
-                                            textAlign: TextAlign.end,
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontFamily:
-                                                    "SourceSansProRegular",
-                                                color: Colors.black)),
-                                      ]),
-                                      if (snapshot.data[index].orderStatus !=
-                                          'Placed')
-                                        Constants.OrderStatusColor(
-                                            snapshot.data[index]),
-                                    ]),
-                              ),
+                                            SizedBox(width: 2),
+                                            Text(
+                                              readTimestamp(snapshot
+                                                  .data[index].timeDelivered),
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontFamily:
+                                                      "SourceSansProRegular",
+                                                  color: Colors.black),
+                                            ),
+                                            SizedBox(width: 5),
+                                            Text(
+                                              snapshot.data[index].orderId,
+                                              style: TextStyle(
+                                                  fontSize: 12.0,
+                                                  fontFamily:
+                                                      "SourceSansProRegular",
+                                                  color: greyText),
+                                            ),
+                                            SizedBox(width: 2),
+                                            if (snapshot.data[index]
+                                                    .isAcknowledged !=
+                                                null)
+                                              Container(
+                                                width: snapshot.data[index]
+                                                        .isAcknowledged
+                                                    ? 12
+                                                    : 0,
+                                                child: InkResponse(
+                                                  child: Image.asset(
+                                                    "assets/images/icon-tick-green.png",
+                                                    width: 12,
+                                                    height: 12,
+                                                  ),
+                                                ),
+                                              ),
+                                            Spacer(),
+                                            Text(
+                                                '\$' +
+                                                    snapshot.data[index].amount
+                                                        .total.amountV1
+                                                        .toStringAsFixed(2)
+                                                        .replaceAllMapped(
+                                                            reg,
+                                                            (Match m) =>
+                                                                '${m[1]},'),
+                                                textAlign: TextAlign.end,
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontFamily:
+                                                        "SourceSansProRegular",
+                                                    color: Colors.black)),
+                                          ]),
+                                          if (snapshot
+                                                  .data[index].orderStatus !=
+                                              'Placed')
+                                            Constants.OrderStatusColor(
+                                                snapshot.data[index]),
+                                        ]),
+                                  )),
 
                               // trailing: Column(
                               //   mainAxisAlignment: MainAxisAlignment.center,

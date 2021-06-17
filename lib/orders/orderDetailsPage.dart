@@ -305,7 +305,8 @@ class OrderDetailsDesign extends State<OrderDetailsPage>
                       onTap: () => {}),
                 ),
 
-                if (order.isAcknowledged == null || order.isAcknowledged == false)
+                if (order.isAcknowledged == null ||
+                    order.isAcknowledged == false)
                   GestureDetector(
                     onTap: () {
                       setState(() {
@@ -1085,30 +1086,30 @@ class OrderDetailsDesign extends State<OrderDetailsPage>
         children: <Widget>[
           if (order.createdBy != null &&
               order.createdBy.id != userData.user.userId)
-          Expanded(
-              child: RaisedButton(
-                  color: Colors.white,
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(30.0)),
-                  onPressed: () {
-                    events.mixpanel.track(Events.TAP_ORDER_DETAILS_CONTACT);
-                    events.mixpanel.flush();
-                    _newTaskModalBottomSheet(context);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      ImageIcon(AssetImage('assets/images/icon_phone.png'),
-                          color: buttonBlue),
-                      Text(
-                        ' Contact',
-                        style: TextStyle(
-                            color: buttonBlue,
-                            fontSize: 16.0,
-                            fontFamily: "SourceSansProSemiBold"),
-                      ),
-                    ],
-                  ))),
+            Expanded(
+                child: RaisedButton(
+                    color: Colors.white,
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
+                    onPressed: () {
+                      events.mixpanel.track(Events.TAP_ORDER_DETAILS_CONTACT);
+                      events.mixpanel.flush();
+                      _newTaskModalBottomSheet(context);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        ImageIcon(AssetImage('assets/images/icon_phone.png'),
+                            color: buttonBlue),
+                        Text(
+                          ' Contact',
+                          style: TextStyle(
+                              color: buttonBlue,
+                              fontSize: 16.0,
+                              fontFamily: "SourceSansProSemiBold"),
+                        ),
+                      ],
+                    ))),
           Padding(padding: EdgeInsets.fromLTRB(0, 0, 10, 0)),
           Expanded(
               child: RaisedButton(

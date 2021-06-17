@@ -110,7 +110,7 @@ class SearchCatalogueDesign extends State<SearchCataloguePage>
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
             ),
             child: TextField(
-              cursorColor: Colors.blue,
+              cursorColor: buttonBlue,
               maxLines: null,
               textInputAction: TextInputAction.go,
               controller: _controller,
@@ -130,7 +130,11 @@ class SearchCatalogueDesign extends State<SearchCataloguePage>
                   border: InputBorder.none,
                   prefixIcon: new Icon(Icons.search, color: Colors.grey),
                   hintText: Constants.txt_Search_catalogue,
-                  hintStyle: new TextStyle(color: greyText)),
+                  hintStyle: new TextStyle(
+                    color: greyText,
+                    fontSize: 16,
+                    fontFamily: 'SourceSansProRegular',
+                  )),
               // onChanged: searchOperation,
             ),
           ),

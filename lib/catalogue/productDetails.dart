@@ -33,23 +33,21 @@ class ProductdetailsState extends State<Productdetails> {
       child: contentBox(context),
     );
   }
-  contentBox(context){
+
+  contentBox(context) {
     return Stack(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.only(left: 20,top: 25, right: 20,bottom: 20
-          ),
+          padding: EdgeInsets.only(left: 20, top: 25, right: 20, bottom: 20),
           margin: EdgeInsets.only(top: 5),
           decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
-                BoxShadow(color: Colors.black,offset: Offset(0,3),
-                    blurRadius: 10
-                ),
-              ]
-          ),
+                BoxShadow(
+                    color: Colors.black, offset: Offset(0, 3), blurRadius: 10),
+              ]),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -59,64 +57,71 @@ class ProductdetailsState extends State<Productdetails> {
                 Row(
                   children: [
                     Expanded(
-                      child: Text(widget.catalogueProducts.productName,style: TextStyle(
-                          fontSize: 18,
-                          fontFamily: "SourceSansProBold"),textAlign: TextAlign.left,),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(widget.catalogueProducts.supplierProductCode,style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: "SourceSansProRegular"),textAlign: TextAlign.left,),
-                  ],
-                ),
-
-                if (widget.catalogueProducts.certifications != null && widget.catalogueProducts.certifications.isNotEmpty)
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 50,
-                        child: ListView.builder(
-
-                            key: const PageStorageKey<String>(
-                                'scrollPosition'),
-                            itemCount: widget.catalogueProducts.certifications.length,
-                            shrinkWrap: true,
-
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder:
-                                (BuildContext context, int subIndex) {
-                              return Padding(
-                                padding: EdgeInsets.only(top: 5, bottom: 5),
-                                child: GestureDetector(
-                                  onTap: () {},
-                                    child: Container(
-                                      // color: Colors.red,
-                                      child: Row(
-                                      //  mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            //  width: 30,
-                                            color: Colors.white,
-                                            child: displayCertImage(widget.catalogueProducts.certifications[subIndex]
-                                                .name),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                ),
-                              );
-                            }),
+                      child: Text(
+                        widget.catalogueProducts.productName,
+                        style: TextStyle(
+                            fontSize: 18, fontFamily: "SourceSansProBold"),
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
                 ),
-               // SizedBox(height: 10,),
+                Row(
+                  children: [
+                    Text(
+                      widget.catalogueProducts.supplierProductCode,
+                      style: TextStyle(
+                          fontSize: 14, fontFamily: "SourceSansProRegular"),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
 
-               showSoldPer(widget.catalogueProducts),
+                if (widget.catalogueProducts.certifications != null &&
+                    widget.catalogueProducts.certifications.isNotEmpty)
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 50,
+                          child: ListView.builder(
+                              key: const PageStorageKey<String>(
+                                  'scrollPosition'),
+                              itemCount: widget
+                                  .catalogueProducts.certifications.length,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder:
+                                  (BuildContext context, int subIndex) {
+                                return Padding(
+                                  padding: EdgeInsets.only(top: 5, bottom: 5),
+                                  child: GestureDetector(
+                                      onTap: () {},
+                                      child: Container(
+                                        // color: Colors.red,
+                                        child: Row(
+                                          //  mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              //  width: 30,
+                                              color: Colors.white,
+                                              child: displayCertImage(widget
+                                                  .catalogueProducts
+                                                  .certifications[subIndex]
+                                                  .name),
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                );
+                              }),
+                        ),
+                      ),
+                    ],
+                  ),
+                // SizedBox(height: 10,),
+
+                showSoldPer(widget.catalogueProducts),
                 shelfLife(widget.catalogueProducts),
                 region(widget.catalogueProducts),
                 condition(widget.catalogueProducts),
@@ -124,13 +129,18 @@ class ProductdetailsState extends State<Productdetails> {
                 Row(
                   children: [
                     Expanded(
-                      child: Text(widget.catalogueProducts.description,style: TextStyle(fontSize: 16,
-                          fontFamily: "SourceSansProRegular"),textAlign: TextAlign.left,),
+                      child: Text(
+                        widget.catalogueProducts.description,
+                        style: TextStyle(
+                            fontSize: 16, fontFamily: "SourceSansProRegular"),
+                        textAlign: TextAlign.left,
+                      ),
                     ),
                   ],
                 ),
-                SizedBox(height: 22,),
-
+                SizedBox(
+                  height: 22,
+                ),
               ],
             ),
           ),
@@ -155,27 +165,30 @@ class ProductdetailsState extends State<Productdetails> {
                         fontFamily: 'SourceSansProRegular',
                         color: grey_text),
                   ),
-
                   if (pro.countryOfOrigin != null)
                     Padding(
-                      padding: const EdgeInsets.only(left: 30.0),
+                      padding: const EdgeInsets.only(left: 25.0),
                       child: Container(
                           child: Text(
-                            pro.countryOfOrigin,
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'SourceSansProRegular',
-                                color: Colors.black),
-                          )),
+                        pro.countryOfOrigin,
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'SourceSansProRegular',
+                            color: Colors.black),
+                      )),
                     )
                 ],
               ),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               Container(
                 height: 1.5,
                 color: faintGrey,
               ),
-              SizedBox(height: 10,)
+              SizedBox(
+                height: 10,
+              )
             ],
           ),
         ),
@@ -186,15 +199,14 @@ class ProductdetailsState extends State<Productdetails> {
   }
 
   Widget showSoldPer(CatalogueProducts products) {
-
     print('sold by');
     print(products.orderBy);
     List<String> uoms = [];
     if (products.orderBy != null)
-      for( OrderBy orderBy in products.orderBy) {
+      for (OrderBy orderBy in products.orderBy) {
         print(orderBy.unitSize);
-      uoms.add(orderBy.unitSize);
-    }
+        uoms.add(orderBy.unitSize);
+      }
 
     if (uoms != null && uoms.length != 0) {
       print(uoms);
@@ -203,7 +215,6 @@ class ProductdetailsState extends State<Productdetails> {
         child: Column(
           children: [
             Row(
-              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   "Sold per",
@@ -211,36 +222,40 @@ class ProductdetailsState extends State<Productdetails> {
                       fontSize: 16,
                       fontFamily: 'SourceSansProRegular',
                       color: grey_text),
+                  textAlign: TextAlign.left,
                 ),
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 80.0),
-                    child: Container(
-                      // margin: EdgeInsets.symmetric(vertical: 1.0),
-                        width: 100,
+                Padding(
+                  padding: const EdgeInsets.only(left: 80.0),
+                  child: Container(
+                    // margin: EdgeInsets.symmetric(vertical: 1.0),
+                    width: 100,
                     //  height: 200,
                     //     child: Flexible(
-                          child: Text(uoms.join(", "),
-                               maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'SourceSansProRegular',
-                                color: Colors.black),
-                          ),
-                        // )
-                        ),
-                  )
+                    child: Text(
+                      uoms.join(", "),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'SourceSansProRegular',
+                          color: Colors.black),
+                      textAlign: TextAlign.left,
+                    ),
+                    // )
+                  ),
+                )
               ],
             ),
-
-            SizedBox(height: 16,),
+            SizedBox(
+              height: 16,
+            ),
             Container(
               height: 1.5,
               color: faintGrey,
             ),
-            SizedBox(height: 10,)
-
+            SizedBox(
+              height: 10,
+            )
           ],
         ),
       );
@@ -250,8 +265,10 @@ class ProductdetailsState extends State<Productdetails> {
   }
 
   Widget shelfLife(CatalogueProducts pro) {
-
-    if (pro.directorySettings != null && pro.directorySettings.shelfLife != null && pro.directorySettings.shelfLife.duration != null && pro.directorySettings.shelfLife.time != null) {
+    if (pro.directorySettings != null &&
+        pro.directorySettings.shelfLife != null &&
+        pro.directorySettings.shelfLife.duration != null &&
+        pro.directorySettings.shelfLife.time != null) {
       return Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: Container(
@@ -266,27 +283,34 @@ class ProductdetailsState extends State<Productdetails> {
                         fontFamily: 'SourceSansProRegular',
                         color: grey_text),
                   ),
-
-                  if (pro.directorySettings != null && pro.directorySettings.shelfLife.duration != null && pro.directorySettings.shelfLife.time != null)
+                  if (pro.directorySettings != null &&
+                      pro.directorySettings.shelfLife.duration != null &&
+                      pro.directorySettings.shelfLife.time != null)
                     Padding(
                       padding: const EdgeInsets.only(left: 80.0),
                       child: Container(
                           child: Text(
-                            pro.directorySettings.shelfLife.time + " " + pro.directorySettings.shelfLife.duration,
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'SourceSansProRegular',
-                                color: Colors.black),
-                          )),
+                        pro.directorySettings.shelfLife.time +
+                            " " +
+                            pro.directorySettings.shelfLife.duration,
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'SourceSansProRegular',
+                            color: Colors.black),
+                      )),
                     )
                 ],
               ),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               Container(
                 height: 1.5,
                 color: faintGrey,
               ),
-              SizedBox(height: 10,)
+              SizedBox(
+                height: 10,
+              )
             ],
           ),
         ),
@@ -297,7 +321,9 @@ class ProductdetailsState extends State<Productdetails> {
   }
 
   Widget condition(CatalogueProducts pro) {
-    if (pro.directorySettings != null && pro.directorySettings.condition != null && pro.directorySettings.condition.isNotEmpty) {
+    if (pro.directorySettings != null &&
+        pro.directorySettings.condition != null &&
+        pro.directorySettings.condition.isNotEmpty) {
       return Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: Container(
@@ -312,27 +338,31 @@ class ProductdetailsState extends State<Productdetails> {
                         fontFamily: 'SourceSansProRegular',
                         color: grey_text),
                   ),
-
-                  if (pro.directorySettings != null && pro.directorySettings.condition != null)
+                  if (pro.directorySettings != null &&
+                      pro.directorySettings.condition != null)
                     Padding(
                       padding: const EdgeInsets.only(left: 75.0),
                       child: Container(
                           child: Text(
-                            pro.directorySettings.condition,
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'SourceSansProRegular',
-                                color: Colors.black),
-                          )),
+                        pro.directorySettings.condition,
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'SourceSansProRegular',
+                            color: Colors.black),
+                      )),
                     )
                 ],
               ),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               Container(
                 height: 1.5,
                 color: faintGrey,
               ),
-              SizedBox(height: 10,)
+              SizedBox(
+                height: 10,
+              )
             ],
           ),
         ),
@@ -355,16 +385,17 @@ class ProductdetailsState extends State<Productdetails> {
           height: 375,
           width: 375,
           margin: EdgeInsets.fromLTRB(5, 15, 5, 15),
-          child:  Image.network(url,fit: BoxFit.fill,)
-      );
+          child: Image.network(
+            url,
+            fit: BoxFit.fill,
+          ));
     } else {
       return Container(
         height: 375,
         width: 375,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-          color: faintGrey
-        ),
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            color: faintGrey),
         child: Center(
           child: Image.asset('assets/images/icon_sku_placeholder.png'),
         ),
@@ -373,49 +404,59 @@ class ProductdetailsState extends State<Productdetails> {
   }
 
   Widget displayCertImage(String certName) {
-
     var assetName = 'assets/images/cert_vegan.png';
     Color color = Colors.blue;
+    Color textColor = Colors.black;
 
     if (certName == 'Halal') {
       assetName = 'assets/images/cert_halal.png';
       color = litGreen;
+      textColor = thickGreen;
     }
     if (certName == 'Vegetarian') {
       assetName = 'assets/images/cert_vegetarian.png';
       color = litGreen;
+      textColor = thickGreen;
     }
     if (certName == 'Organic') {
       assetName = 'assets/images/cert_organic.png';
       color = litGreen;
+      textColor = thickGreen;
     }
     if (certName == 'Vegan') {
       assetName = 'assets/images/cert_vegan.png';
       color = litGreen;
+      textColor = thickGreen;
     }
     if (certName == 'Gluten-free') {
       assetName = 'assets/images/cert_gluten.png';
       color = sandal;
+      textColor = sandalText;
     }
     if (certName == 'Kosher') {
       assetName = 'assets/images/cert_halal.png';
       color = sandal;
+      textColor = sandalText;
     }
     if (certName == 'FDA') {
       assetName = 'assets/images/cert_fda.png';
       color = Colors.blue;
+      textColor = blueText;
     }
     if (certName == 'Fairtrade') {
       assetName = 'assets/images/cert_fairtrade.png';
       color = sandal;
+      textColor = sandalText;
     }
     if (certName == 'GMP') {
       assetName = 'assets/images/cert_gmp.png';
       color = Colors.blue;
+      textColor = blueText;
     }
     if (certName == 'HAACP') {
       assetName = 'assets/images/cert_haacp.png';
       color = Colors.blue;
+      textColor = blueText;
     }
 
     return Padding(
@@ -427,19 +468,29 @@ class ProductdetailsState extends State<Productdetails> {
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
           color: color.withOpacity(1),
         ),
-        child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Image.asset(assetName,width: 20, height: 20,),
-              ),
-              SizedBox(width: 5,),
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: Text(certName, style: TextStyle(fontFamily: 'SourceSansProSemiBold', fontSize: 14, color: Colors.black),),
-              ),
-
-            ]),
+        child: Row(children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Image.asset(
+              assetName,
+              width: 20,
+              height: 20,
+            ),
+          ),
+          SizedBox(
+            width: 5,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Text(
+              certName,
+              style: TextStyle(
+                  fontFamily: 'SourceSansProSemiBold',
+                  fontSize: 14,
+                  color: textColor),
+            ),
+          ),
+        ]),
       ),
     );
   }

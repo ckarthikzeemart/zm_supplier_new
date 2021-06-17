@@ -106,7 +106,7 @@ class OutletSelectionDesign extends State<OutletSelectionPage>
       color: faintGrey,
       margin: EdgeInsets.only(top: 2.0),
       padding:
-          EdgeInsets.only(left: 15.0, right: 15.0, top: 20.0, bottom: 15.0),
+          EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0, bottom: 10.0),
       child: Text(name,
           style: TextStyle(
             fontFamily: "SourceSansProBold",
@@ -135,9 +135,14 @@ class OutletSelectionDesign extends State<OutletSelectionPage>
             onPressed: () {
               setState(() {
                 if (this.icon.icon == Icons.search) {
-                  userProperties = {"userName": specificUserInfo.data.fullName, "email": loginResponse.user.email, "userId": loginResponse.user.userId};
-                  events.mixpanel
-                      .track(Events.TAP_NEW_ORDER_SELECT_OUTLET_SEARCH, properties: userProperties);
+                  userProperties = {
+                    "userName": specificUserInfo.data.fullName,
+                    "email": loginResponse.user.email,
+                    "userId": loginResponse.user.userId
+                  };
+                  events.mixpanel.track(
+                      Events.TAP_NEW_ORDER_SELECT_OUTLET_SEARCH,
+                      properties: userProperties);
                   events.mixpanel.flush();
 
                   this.icon = new Icon(
@@ -337,27 +342,31 @@ class OutletSelectionDesign extends State<OutletSelectionPage>
                 focusColor: Colors.white,
                 contentPadding: EdgeInsets.only(left: 15.0, right: 3.0),
                 leading: displayImage(snapShot.data[index].outlet),
-                title: RichText(
-                  text: TextSpan(
-                    children: highlightOccurrences(
-                        snapShot.data[index].outlet.outletName,
-                        _controller.text),
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.black,
-                        fontFamily: "SourceSansProSemiBold"),
-                  ),
-                ),
-                subtitle: Text(
-                  snapShot.data[index].outlet.company.companyName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    color: greyText,
-                    fontFamily: "SourceSansProRegular",
-                  ),
-                ),
+                title: Transform.translate(
+                    offset: Offset(-10, 0),
+                    child: RichText(
+                      text: TextSpan(
+                        children: highlightOccurrences(
+                            snapShot.data[index].outlet.outletName,
+                            _controller.text),
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.black,
+                            fontFamily: "SourceSansProSemiBold"),
+                      ),
+                    )),
+                subtitle: Transform.translate(
+                    offset: Offset(-10, 0),
+                    child: Text(
+                      snapShot.data[index].outlet.company.companyName,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        color: greyText,
+                        fontFamily: "SourceSansProRegular",
+                      ),
+                    )),
                 trailing: IconButton(
                   icon: snapShot.data[index].isFavourite
                       ? Image(
@@ -376,12 +385,15 @@ class OutletSelectionDesign extends State<OutletSelectionPage>
                   },
                 ),
                 onTap: () {
-                  userProperties = {"userName": specificUserInfo.data.fullName, "email": loginResponse.user.email, "userId": loginResponse.user.userId, 'outletId': snapShot.data[index].outlet.outletId,
-                    'outletName': snapShot.data[index].outlet.outletName};
-                  events.mixpanel
-                      .track(Events.TAP_NEW_ORDER_SELECT_OUTLET, properties: {
-
-                  });
+                  userProperties = {
+                    "userName": specificUserInfo.data.fullName,
+                    "email": loginResponse.user.email,
+                    "userId": loginResponse.user.userId,
+                    'outletId': snapShot.data[index].outlet.outletId,
+                    'outletName': snapShot.data[index].outlet.outletName
+                  };
+                  events.mixpanel.track(Events.TAP_NEW_ORDER_SELECT_OUTLET,
+                      properties: {});
                   events.mixpanel.flush();
                   Navigator.push(
                       context,

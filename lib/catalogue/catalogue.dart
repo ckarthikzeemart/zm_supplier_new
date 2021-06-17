@@ -63,7 +63,7 @@ class CatalogueDesign extends State<Catalogue> {
     events.mixPanelEvents();
 
     categoriesData = getCategoriesAPI(false, false);
-    productsData = getCataloguesAPI(false, false, "","");
+    productsData = getCataloguesAPI(false, false, "", "");
     // productsData = getCatalogueApiCalling(false, false);
   }
 
@@ -108,8 +108,8 @@ class CatalogueDesign extends State<Catalogue> {
     return categoriesDataList;
   }
 
-  Future<List<CatalogueProducts>> getCataloguesAPI(
-      bool isUpdating, bool isFilterApplied, String categoryId, String subcategoryId) async {
+  Future<List<CatalogueProducts>> getCataloguesAPI(bool isUpdating,
+      bool isFilterApplied, String categoryId, String subcategoryId) async {
     catalogueBaseResponse = CatalogueBaseResponse();
     userData =
         LoginResponse.fromJson(await sharedPref.readData(Constants.login_Info));
@@ -236,11 +236,12 @@ class CatalogueDesign extends State<Catalogue> {
       selectedFilters.forEach((element) {
         namesArray.add(element.name);
       });
-      names = namesArray.join(",");
+      names = namesArray.join(", ");
     }
 
-    return Padding(
-        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+    return Container(
+        color: Colors.white,
+        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: new GestureDetector(
             onTap: () async {
               print("Container clicked");
@@ -248,7 +249,9 @@ class CatalogueDesign extends State<Catalogue> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => new SubCategoryFilterPage(
-                          selectedFilters, selectedCategory.categoryId,selectedSubcategoryIds)));
+                          selectedFilters,
+                          selectedCategory.categoryId,
+                          selectedSubcategoryIds)));
 
               selectedFilters = result;
 
@@ -261,25 +264,27 @@ class CatalogueDesign extends State<Catalogue> {
                 productsData = getCataloguesAPI(
                     false,
                     false,
-                    categoryResponse
-                        .data[selectedIndex].categoryId,ids.join(","));
+                    categoryResponse.data[selectedIndex].categoryId,
+                    ids.join(","));
                 // selectedCustomersDataFuture = selectedD(a);
               });
               // isFilterApplied = true;
               // );
             },
             child: new Container(
-              height: 60,
-              margin: EdgeInsets.fromLTRB(5, 15, 5, 15),
+              height: 40,
+              margin: EdgeInsets.fromLTRB(5, 10, 5, 10),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: faintGrey,
+                borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
               child: Center(
                 child: Text(
                   names,
                   style: TextStyle(
-                      fontSize: 14, fontFamily: "SourceSansProSemiBold",color: Colors.black),
+                      fontSize: 14,
+                      fontFamily: "SourceSansProSemiBold",
+                      color: Colors.black),
                 ),
               ),
             )));
@@ -296,7 +301,7 @@ class CatalogueDesign extends State<Catalogue> {
 
     setState(() {
       categoriesData = getCategoriesAPI(false, true);
-      productsData = getCataloguesAPI(false, false, "","");
+      productsData = getCataloguesAPI(false, false, "", "");
       // selectedCustomersDataFuture =
       //     getCustomersListCalling(false, true);
     });
@@ -359,7 +364,7 @@ class CatalogueDesign extends State<Catalogue> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
-                      padding: EdgeInsets.all(0),
+                      padding: EdgeInsets.only(left: 10, top: 10),
                       child: GestureDetector(
                         onTap: () {
                           print('tapped $index');
@@ -377,8 +382,8 @@ class CatalogueDesign extends State<Catalogue> {
                             productsData = getCataloguesAPI(
                                 false,
                                 false,
-                                categoryResponse
-                                    .data[selectedIndex].categoryId,"");
+                                categoryResponse.data[selectedIndex].categoryId,
+                                "");
                             // selectedCustomersDataFuture = selectedD(a);
                           });
                         },
@@ -394,13 +399,15 @@ class CatalogueDesign extends State<Catalogue> {
                                   decoration: BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
-                                    border: selectedIndex == index
-                                        ? Border.all(
-                                            width: 2, color: buttonBlue)
-                                        : Border.all(
-                                            width: 0,
-                                            color: Colors.transparent),
-                                    color: Colors.white,
+                                    // border: selectedIndex == index
+                                    //     ? Border.all(
+                                    //         width: 2, color: buttonBlue)
+                                    //     : Border.all(
+                                    //         width: 0,
+                                    //         color: Colors.transparent),
+                                    color: selectedIndex == index
+                                        ? Colors.white
+                                        : Colors.transparent,
                                   ),
                                   child: Column(
                                     children: [
@@ -420,7 +427,7 @@ class CatalogueDesign extends State<Catalogue> {
                                                 style: TextStyle(
                                                   fontSize: 11,
                                                   fontFamily:
-                                                      'SourceSansProSemiBold',
+                                                      'SourceSansProRegular',
                                                   color: Colors.black,
                                                 ),
                                                 textAlign: TextAlign.center,
@@ -449,9 +456,7 @@ class CatalogueDesign extends State<Catalogue> {
       print(category.imageURL);
 
       return Container(
-        height: 60.0,
-        width: 60.0, child:  Image.network(category.imageURL)
-      );
+          height: 60.0, width: 60.0, child: Image.network(category.imageURL));
     } else {
       return Container(
         height: 60.0,
@@ -482,7 +487,7 @@ class CatalogueDesign extends State<Catalogue> {
             borderRadius: BorderRadius.circular(5.0),
             child: Image.network(
               url,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ));
     } else {
@@ -494,7 +499,10 @@ class CatalogueDesign extends State<Catalogue> {
           color: faintGrey.withOpacity(1),
         ),
         child: Center(
-          child: Image.asset('assets/images/icon_sku_placeholder.png', fit: BoxFit.fill,),
+          child: Image.asset(
+            'assets/images/icon_sku_placeholder.png',
+            fit: BoxFit.fill,
+          ),
         ),
       );
     }
@@ -538,7 +546,7 @@ class CatalogueDesign extends State<Catalogue> {
                                   snapshot.data[index].productName,
                                   style: TextStyle(
                                       fontSize: 16,
-                                      fontFamily: "SourceSansProSemiBold"),
+                                      fontFamily: "SourceSansProRegular"),
                                 ),
                               ),
                               subtitle: SizedBox(
@@ -546,13 +554,17 @@ class CatalogueDesign extends State<Catalogue> {
                                 child: ListView.builder(
                                     key: const PageStorageKey<String>(
                                         'scrollPosition'),
-                                    itemCount: (snapshot
-                                        .data[index].certifications == null) ? 0 : snapshot.data[index].certifications.length,
+                                    itemCount:
+                                        (snapshot.data[index].certifications ==
+                                                null)
+                                            ? 0
+                                            : snapshot.data[index]
+                                                .certifications.length,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.horizontal,
                                     itemBuilder:
                                         (BuildContext context, int subIndex) {
-                                          bool first = -1 == (subIndex - 1);
+                                      bool first = -1 == (subIndex - 1);
                                       return Padding(
                                         padding: EdgeInsets.all(0),
                                         child: GestureDetector(
@@ -560,8 +572,10 @@ class CatalogueDesign extends State<Catalogue> {
                                           child: Row(
                                             children: [
                                               Padding(
-                                                  padding:first ?
-                                                  EdgeInsets.only(left: 0) : EdgeInsets.only(left: 10),
+                                                  padding: first
+                                                      ? EdgeInsets.only(left: 0)
+                                                      : EdgeInsets.only(
+                                                          left: 5),
                                                   child: Column(
                                                     children: [
                                                       Padding(
@@ -608,18 +622,19 @@ class CatalogueDesign extends State<Catalogue> {
                                           ),
                                     onPressed: () {
                                       print('tapped $index');
-                                      tapOnFavourite(index, snapshot.data[index]);
+                                      tapOnFavourite(
+                                          index, snapshot.data[index]);
                                     }),
                               ),
                               tileColor: Colors.white,
                               onTap: () async {
-                                showDialog(context: context,
-                                    builder: (BuildContext context){
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
                                       return Productdetails(
-                                       catalogueProducts: snapshot.data[index],
+                                        catalogueProducts: snapshot.data[index],
                                       );
-                                    }
-                                );
+                                    });
                               })),
                       Divider(
                         height: 1.5,
@@ -635,11 +650,9 @@ class CatalogueDesign extends State<Catalogue> {
   }
 
   tapOnFavourite(int index, CatalogueProducts products) {
-
     if (products.isFavourite) {
       setState(() {
         products.isFavourite = false;
-
       });
     } else {
       setState(() {
@@ -647,11 +660,12 @@ class CatalogueDesign extends State<Catalogue> {
       });
     }
 
-    SkuFavourite skuFavourite = SkuFavourite(products.sku, products.isFavourite);
+    SkuFavourite skuFavourite =
+        SkuFavourite(products.sku, products.isFavourite);
     FavouritesApi favourite = new FavouritesApi();
     favourite
-        .updateProductFavourite(userData.mudra, userData.supplier.first.supplierId,
-         skuFavourite)
+        .updateProductFavourite(
+            userData.mudra, userData.supplier.first.supplierId, skuFavourite)
         .then((value) async {
       // getCustomersReportApiCalling(true, false);
       // getCustomersListCalling(true, false);
@@ -711,7 +725,10 @@ class CatalogueDesign extends State<Catalogue> {
         color: color.withOpacity(1),
       ),
       child: Center(
-        child: Image.asset(assetName),
+        child: Image.asset(
+          assetName,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
